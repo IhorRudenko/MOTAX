@@ -83,7 +83,6 @@
   justify-content: center;
   background-color: #fff;
   z-index: 1;
-
 }
 
 .intro__descr-img {
@@ -103,17 +102,13 @@
   line-height: 1.2;
 }
 
-/* ===== БАЗА КОМПОНЕНТА ===== */
 .ba {
   position: relative;
-  --pos: 50%;           /* поточна позиція межі (від 0% до 100%) */
-  --rail: 2px;          /* товщина вертикальної лінії */
-  --knob: 50px;         /* діаметр круглої кнопки */
-  --hitpad: 20px;       /* додатковий пад для хіта */
+  --pos: 50%;          
+  --rail: 2px;         
+  --knob: 50px;         
+  --hitpad: 20px;       
 
-  /* РОЗМІР КОНТЕЙНЕРА:
-     - залиш варіант із aspect-ratio
-     - або приберіть його і задай власну висоту (height) */
   width: min(615px, 100%);
   height: auto;
   aspect-ratio: 4 / 3;
@@ -122,16 +117,13 @@
   margin-top: -50px;
 }
 
-/* Обидва шари однакового розміру і лежать один на одному */
 .ba__layer {
   position: absolute;
   inset: 0;
-  /* важливо: фон прозорий, щоб фон сторінки лишався прозорим */
   background: transparent;
   will-change: clip-path;
 }
 
-/* Картинка фіксується по контейнеру без "зума" */
 .ba__layer > img {
   position: absolute;
   inset: 0;
@@ -139,67 +131,56 @@
   height: 100% !important;
   max-width: none !important;
   max-height: none !important;
-  object-fit: contain;        /* або cover — за потреби */
+  object-fit: contain;        
   object-position: center;
   display: block;
-  pointer-events: none;       /* щоб не заважала drag-у */
-  background: transparent;    /* для прозорих PNG */
-  transform: none !important; /* глушимо випадкові глобальні трансформації */
+  pointer-events: none;       
+  background: transparent;    
+  transform: none !important; 
 }
 
-/* Ліва половина: показуємо ТІЛЬКИ before (праву частину "вирізаємо") */
 .ba__layer--before {
   clip-path: inset(0 calc(100% - var(--pos)) 0 0);
 }
 
-/* Права половина: показуємо ТІЛЬКИ after (ліву частину "вирізаємо") */
 .ba__layer--after {
   clip-path: inset(0 0 0 var(--pos));
 }
 
-/* Межа + ручка */
 .ba__handle {
   position: absolute;
   inset-block: 0;
   inset-inline-start: var(--pos);
   z-index: 10;
-  height: 100%;
-  bottom: 70px;
+  height: 75%;
+  bottom: 75px;
   transform: translate-x(-50%);
   margin-top: auto;
-
-  /* Вертикальна "рейка" */
   width: var(--rail);
   background-color: #fff;
-
   cursor: ew-resize;
   touch-action: none;
-  outline: none; /* фокус намальований на кнопці */
+  outline: none; 
 }
 
-/* Розширена хіт-зона навколо рейки */
 .ba__handle::before {
   content: "";
   position: absolute;
   inset: 0 calc(-1 * var(--hitpad));
 }
 
-/* Кругла кнопка по центру межі */
 .ba__handle::after {
   content: "";
   position: absolute;
   top: 100%; left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -90%);
   width: var(--knob);
   height: var(--knob);
   border-radius: 50%;
-  background: transparent center / 40px 40px no-repeat;
+  background: transparent center / 46px 46px no-repeat;
   background-image: url('../../../assets/img/intro/icon-sun-snow.png');
-  background-color: rgba(156, 154, 154, 0.897);
-  padding: 4px;
 }
 
-/* Видимий фокус для клавіатури */
 .ba__handle:focus-visible::after {
   box-shadow:
     0 0 0 3px rgba(255,255,255,.9),
@@ -209,8 +190,6 @@
 .ba__bottom {
   position: absolute;
   bottom: 70px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid #fff;
   // width: 90%;
   width: 100%;
   left: 50%;
@@ -220,6 +199,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(25px) saturate(150%);
+  border: 1px solid #fff;
  
   img {
     width: 30px;
