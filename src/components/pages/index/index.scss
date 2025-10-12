@@ -1,76 +1,125 @@
 .page {
-	// &--index {
-	// }
+
 }
 
 .intro {
-	// background-image: url(../../../assets/img/intro/intro-bg.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	// height: 100dvh;
-	height: 100%;
+  background-image: url(../../../assets/img/intro/intro-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 1032px;
+  max-height: 100dvh;
+  padding-top: 78px;
 }
 
-// .before-after__item {
-// 	// background-color: #696666;
-// }
+.intro__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 100%;
+}
 
-// .before-after__arrow {
-//   align-items: center;
-//   bottom: 0;
-//   cursor: col-resize;
-//   display: flex;
-//   justify-content: center;
-//   left: 50%;
-//   position: absolute;
-//   top: 0;
-//   width: 0;
-//   z-index: 20;
-//   // width: 4px;
-//   // background: green;
-// }
+.intro__main {
 
-// .before-after__arrow::before {
-//   content: '';
-//   position: absolute;
-//   inset: 0 -20px;
-// }
+}
 
-// .before-after__arrow::after {
-//   align-items: center;
-//   background: darkgreen;
-//   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512"><path fill="hsl(172, 61%, 82%)" d="M505.7 265.7c3-3 3.1-7.9 .2-11.1l-104-112c-3-3.2-8.1-3.4-11.3-.4s-3.4 8.1-.4 11.3L481.7 252 23.3 252l90.3-90.3c3.1-3.1 3.1-8.2 0-11.3s-8.2-3.1-11.3 0l-104 104c-3.1 3.1-3.1 8.2 0 11.3l104 104c3.1 3.1 8.2 3.1 11.3 0s3.1-8.2 0-11.3L23.3 268l457.4 0-90.3 90.3c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0l104-104z"/></svg>');
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   border-radius: 50%;
-//   color: green;
-//   content: '';
-//   display: flex;
-//   font-size: 16px;
-//   font-weight: bold;
-//   justify-content: center;
-//   max-height: 40px;
-//   max-width: 40px;
-//   min-height: 40px;
-//   min-width: 40px;
-// }
+.intro__title {
+  font-family: "arubricacnbolditalic";
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+
+  @include adaptiveValue("font-size", 75, 30, 0, 1920, 479.98);
+
+  .intro__title-span {
+    background-color: #FF0000;
+    width: fit-content;
+    transform: skew(-8deg, 0deg);
+    position: relative;
+    white-space: nowrap;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 8px;
+      transform: skew(8deg, 0deg);
+      width: 100%; 
+      height: 100%; 
+      background-color: #FF0000;
+      z-index: -1;
+    }
+  }
+
+  .intro__title-span--1 {
+    padding: 20px 20px 10px 10px;
+  }
+  
+  .intro__title-span--2 {
+    padding: 10px 20px 20px 10px;
+  }
+
+
+}
+
+.intro__descr {
+  display: flex;
+  align-items: center;
+  margin: 80px 0 30px;
+}
+
+.intro__descr-img-wrap {
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 1;
+
+}
+
+.intro__descr-img {
+  width: 63px;
+  height: 63px;
+  flex: 0 0 63px;
+}
+
+.intro__descr-text {
+  background-color: #F4F4F4;
+  padding: 10px 20px 10px 30px;
+  transform: skew(-8deg, 0deg);
+  margin-left:  -20px;
+  font-family: "arubricacnbolditalic";
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
 
 /* ===== БАЗА КОМПОНЕНТА ===== */
 .ba {
   position: relative;
   --pos: 50%;           /* поточна позиція межі (від 0% до 100%) */
   --rail: 2px;          /* товщина вертикальної лінії */
-  --knob: 40px;         /* діаметр круглої кнопки */
+  --knob: 50px;         /* діаметр круглої кнопки */
   --hitpad: 20px;       /* додатковий пад для хіта */
 
   /* РОЗМІР КОНТЕЙНЕРА:
      - залиш варіант із aspect-ratio
      - або приберіть його і задай власну висоту (height) */
-  width: min(900px, 100%);
-  aspect-ratio: 16 / 9;
-
+  width: min(615px, 100%);
+  height: auto;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+  // margin-top: -75px;
+  margin-top: -50px;
 }
 
 /* Обидва шари однакового розміру і лежать один на одному */
@@ -113,12 +162,15 @@
   position: absolute;
   inset-block: 0;
   inset-inline-start: var(--pos);
-  transform: translateX(-50%);
   z-index: 10;
+  height: 100%;
+  bottom: 70px;
+  transform: translate-x(-50%);
+  margin-top: auto;
 
   /* Вертикальна "рейка" */
   width: var(--rail);
-  background: rgba(0,0,0,.35);
+  background-color: #fff;
 
   cursor: ew-resize;
   touch-action: none;
@@ -136,18 +188,15 @@
 .ba__handle::after {
   content: "";
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100%; left: 50%;
+  transform: translate(-50%, -100%);
   width: var(--knob);
   height: var(--knob);
   border-radius: 50%;
-  border: 2px solid rgba(0,0,0,.45);
-  background: #fff center / 24px 24px no-repeat;
-  /* стрілочки можна замінити на свої */
-  background-image: url('data:image/svg+xml;utf8,\
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512">\
-  <path fill="hsl(172,61%,32%)" d="M505.7 265.7c3-3 3.1-7.9 .2-11.1l-104-112c-3-3.2-8.1-3.4-11.3-.4s-3.4 8.1-.4 11.3L481.7 252 23.3 252l90.3-90.3c3.1-3.1 3.1-8.2 0-11.3s-8.2-3.1-11.3 0l-104 104c-3.1 3.1-3.1 8.2 0 11.3l104 104c3.1 3.1 8.2 3.1 11.3 0s3.1-8.2 0-11.3L23.3 268l457.4 0-90.3 90.3c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0l104-104z"/></svg>');
-  box-shadow: 0 2px 8px rgba(0,0,0,.14);
+  background: transparent center / 40px 40px no-repeat;
+  background-image: url('../../../assets/img/intro/icon-sun-snow.png');
+  background-color: rgba(156, 154, 154, 0.897);
+  padding: 4px;
 }
 
 /* Видимий фокус для клавіатури */
@@ -155,4 +204,47 @@
   box-shadow:
     0 0 0 3px rgba(255,255,255,.9),
     0 0 0 6px rgba(0,0,0,.25);
+}
+
+.ba__bottom {
+  position: absolute;
+  bottom: 70px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #fff;
+  // width: 90%;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  img {
+    width: 30px;
+    height: 30px;
+    margin: 0 50px;
+    z-index: -1;
+  }
+}
+
+
+// -----------------------------------------------------------------
+
+.intro__form {
+}
+.intro__form-body {
+}
+.intro__form-row {
+}
+.intro__form-input {
+}
+.intro__form-btn {
+}
+.checkbox {
+}
+.checkbox__input {
+}
+.checkbox__text {
 }

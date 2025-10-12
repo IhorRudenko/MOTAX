@@ -18,7 +18,6 @@
   const move  = (e) => { if (!drag) return; setPos(clientX(e) - root.getBoundingClientRect().left); };
   const stop  = () => { drag = false; };
 
-  // миша/дотик
   handle.addEventListener('mousedown', start);
   handle.addEventListener('touchstart', start, { passive: false });
   window.addEventListener('mousemove', move);
@@ -26,7 +25,6 @@
   window.addEventListener('mouseup', stop);
   window.addEventListener('touchend', stop);
 
-  // клавіатура
   handle.addEventListener('keydown', (e) => {
     const step = e.shiftKey ? 10 : 1;
     const val = parseInt(handle.getAttribute('aria-valuenow') || '50', 10);
@@ -34,6 +32,5 @@
     if (e.key === 'ArrowRight') { const n = Math.min(100, val + step); root.style.setProperty('--pos', n + '%'); handle.setAttribute('aria-valuenow', n); }
   });
 
-  // ініціалізація
   handle.setAttribute('aria-valuenow', '50');
 })();

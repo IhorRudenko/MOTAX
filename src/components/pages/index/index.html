@@ -3,60 +3,54 @@
 
 <main class="page page--index">
 	<section class="intro">
-		<!-- <div data-fls-beforeafter class="before-after">
-			<div data-fls-beforeafter-before class="before-after__item">
-				<img src="@img/intro/intro_before.jpg" alt="Img">
-			</div>
-			<div data-fls-beforeafter-after class="before-after__item">
-				<img src="@img/intro/intro_after.jpg" alt="Img">
-			</div>
-			<div data-fls-beforeafter-arrow class="before-after__arrow"></div>
-		</div> -->
-
 		<div class="intro__container">
 			<div class="intro__inner">
 				<div class="intro__main">
-					<!-- <h1 class="intro__title">
-						ИДЕАЛЬНЫЙ ПОДАРОК К НОВОМУ ГОДУ
+					<div class="intro__descr">
+						<div class="intro__descr-img-wrap">
+							<img class="intro__descr-img" src="@img/intro/icon-sun-snow.png" alt="Img">
+						</div>
+						<p class="intro__descr-text">
+							Легкая трансформация из летней <br> в зимнюю модель и обратно
+						</p>
+					</div>
+
+					<h1 class="intro__title">
+						<span class="intro__title-span intro__title-span--1">ИДЕАЛЬНЫЙ ПОДАРОК</span> 
+						<span class="intro__title-span intro__title-span--2">К НОВОМУ ГОДУ</span> 
 					</h1>
 
-					<div class="intro__descr">
-						<img class="intro__descr-img" src="@img/intro/icon-1.svg" alt="Img">
-						<p class="intro__descr-text">
-							Легкая трансформация из летней в зимнюю модель и обратно
-						</p>
-					</div> -->
-
-
 					<div class="ba" data-ba>
-						<!-- Ліва половина (BEFORE) -->
 						<div class="ba__layer ba__layer--before">
 							<img src="@img/intro/intro-after.png" alt="After">
 						</div>
 						
-						<!-- Права половина (AFTER) -->
 						<div class="ba__layer ba__layer--after">
 							<img src="@img/intro/intro-before.png" alt="Before">
 						</div>
 
-						<!-- Межа/ручка -->
-						<div
-							class="ba__handle"
-							role="slider"
-							tabindex="0"
-							aria-label="Before/After"
-							aria-valuemin="0"
-							aria-valuemax="100"
-							aria-valuenow="50"
-						></div>
+						<div class="ba__handle" role="slider" tabindex="0" aria-label="Before/After" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+						
+						<div class="ba__bottom">
+							<img src="@img/icons/arrow-prev.svg" alt="Image">
+							<img src="@img/icons/arrow-next.svg" alt="Image">
+						</div>
 					</div>
-
-
-
-			
-
 				</div>
 
+				<div class="intro__form">
+					<form class="intro__form-body" action="#">
+						<div class="intro__form-row">
+							<input class="intro__form-input" type="number" placeholder="Ваш телефон">
+							<button class="intro__form-btn" type="submit">Зафиксировать цену и получить скидку 1000 ₽</button>
+						</div>
+
+						<label data-fls-checkbox class="checkbox">
+							<input data-error="Помилка" class="checkbox__input" type="checkbox" value="1" name="form[]">
+							<span class="checkbox__text">СОГЛАСЕН(А) НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ, ПОЛУЧЕНИЕ РАССЫЛОК, А ТАКЖЕ С ПОЛИТИКОЙ КОНФИДЕНЦИАЛЬНОСТИ и договором оферты</span>
+						</label>
+					</form>			
+				</div>
 			</div>
 		</div>
 	</section>
