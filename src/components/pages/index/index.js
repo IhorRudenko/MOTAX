@@ -43,10 +43,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const phone = form.querySelector('.intro__form-input, input[type="tel"], input[type="number"], input[name="phone"]');
     const checkbox = form.querySelector('.checkbox__input, input[type="checkbox"]');
 
+    // Hint numeric keyboard and pattern; enforce digits-only on input
+    if (phone) {
+      phone.setAttribute('inputmode', 'numeric');
+      phone.setAttribute('pattern', '\\d*');
+    }
+
+    const removeErrors = () => {
+      form.querySelectorAll('.is-invalid').forEach((n) => {
+        n.classList.remove('is-invalid');
+        n.removeAttribute('aria-invalid');
+      });
+      form.querySelectorAll('.form-error').forEach((n) => n.remove());
+    };
+
+    // Live cleanup
+    phone?.addEventListener('input', () => {
+      // keep only digits
+      const raw = String(phone.value || '');
+      const digits = raw.replace(/\D+/g, '');
+      if (raw !== digits) phone.value = digits;
+
+      if (digits.trim().length > 0) {
+        phone.classList.remove('is-invalid');
+        phone.removeAttribute('aria-invalid');
+        // remove adjacent error if present
+        const next = phone.nextElementSibling;
+        if (next && next.classList.contains('form-error')) next.remove();
+      }
+    });
+    checkbox?.addEventListener('change', () => {
+      if (checkbox.checked) {
+        checkbox.classList.remove('is-invalid');
+        checkbox.removeAttribute('aria-invalid');
+        const lbl = checkbox.closest('label');
+        // remove error after label if present
+        if (lbl && lbl.nextElementSibling && lbl.nextElementSibling.classList.contains('form-error')) {
+          lbl.nextElementSibling.remove();
+        }
+      }
+    });
+
     form.addEventListener('submit', (e) => {
       const phoneVal = phone ? String(phone.value || '').trim() : '';
       const phoneOk = phone ? phoneVal.length > 0 : true;
       const checkOk = checkbox ? !!checkbox.checked : true;
+
+      removeErrors();
+
+      if (!phoneOk && phone) {
+        phone.classList.add('is-invalid');
+        phone.setAttribute('aria-invalid', 'true');
+      }
+      if (!checkOk) {
+        checkbox?.classList.add('is-invalid');
+        checkbox?.setAttribute('aria-invalid', 'true');
+      }
 
       if (!phoneOk || !checkOk) {
         e.preventDefault();

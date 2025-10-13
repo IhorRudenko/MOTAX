@@ -30,7 +30,7 @@
   flex-direction: column;
   margin-left: 10px;
 
-  @include adaptiveValue("font-size", 75, 30, 0, 1920, 479.98);
+  @include adaptiveValue("font-size", 72, 30, 0, 1920, 479.98);
 
   .intro__title-span {
     background-color: #FF0000;
@@ -59,8 +59,6 @@
   .intro__title-span--2 {
     padding: 10px 20px 20px 10px;
   }
-
-
 }
 
 .intro__descr {
@@ -186,8 +184,7 @@
 .ba__bottom {
   position: absolute;
   bottom: 70px;
-  // width: 90%;
-  width: 100%;
+  width: 90%;
   left: 50%;
   transform: translateX(-50%);
   height: 50px;
@@ -219,7 +216,11 @@
   border-radius: 10px;
   margin-top: auto;
   margin-bottom: 70px;
-  padding: 15px 30px;
+  padding: 15px 20px;
+
+  @media (max-width: 1440px){
+    padding: 15px;
+  }
 }
 
 .form-body {
@@ -230,8 +231,13 @@
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 15px;
   margin-bottom: 12px;
+
+  @media (max-width: 1199.98px){
+    gap: 10px;
+  }
 }
 
 .form-input {
@@ -242,6 +248,10 @@
   height: 45px;
   color: #868282;
   font-weight: 500;
+}
+
+.form-input.is-invalid {
+  border-color: #E11B22;
 }
 
 .form-input::placeholder {
@@ -338,19 +348,31 @@
     font-size: 7px;
     text-transform: uppercase;
     line-height: 120%;
+    gap: 5px;
+
+    a {
+      display: inline-flex;
+      white-space: nowrap;
+      text-decoration: underline;
+      color: #333;
+      font-weight: 500;
+      font-size: 7px;
+      text-transform: uppercase;
+      line-height: 120%;
+    }
   }
 
   .checkbox__text:before,
   .checkbox__text:after {
-    width: 16px;
-    height: 16px;
-    flex: 0 0 16px;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
   }
 
   .checkbox__input:checked + .checkbox__text:after {
-    width: 12px;
-    height: 12px;
-    flex: 0 0 12px;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
     top: 2px;
     left: 2px;
     background-image: url(../../../assets/img/icons/check.svg);
@@ -358,6 +380,12 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
+  }
+
+  // error state
+  .checkbox__input.is-invalid + .checkbox__text:before {
+    border-color: #E11B22 !important;
+    box-shadow: 0 0 0 1px #E11B22 inset;
   }
 }
 
@@ -386,8 +414,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 15px 30px;
   top: -100%;
+  padding: 15px 20px;
+
+  @media (max-width: 1199.98px){
+    padding: 15px;
+  }
 
   @include adaptiveValue("font-size", 40, 20, 0, 1920, 479.98);
 }
@@ -397,6 +429,14 @@
   opacity: 1;
   visibility: visible;
   top: 0;
+}
+
+// Inline form error message
+.form-error {
+  color: #E11B22;
+  font-size: 12px;
+  line-height: 1.2;
+  margin: 6px 0 0 0;
 }
 
 
