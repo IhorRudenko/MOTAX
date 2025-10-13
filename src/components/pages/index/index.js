@@ -34,3 +34,29 @@
 
   handle.setAttribute('aria-valuenow', '50');
 })();
+
+// Simple form validation for .intro__form
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.intro__form').forEach((wrap) => {
+    const form = wrap.querySelector('form');
+    if (!form) return;
+    const phone = form.querySelector('.intro__form-input, input[type="tel"], input[type="number"], input[name="phone"]');
+    const checkbox = form.querySelector('.checkbox__input, input[type="checkbox"]');
+
+    form.addEventListener('submit', (e) => {
+      const phoneVal = phone ? String(phone.value || '').trim() : '';
+      const phoneOk = phone ? phoneVal.length > 0 : true;
+      const checkOk = checkbox ? !!checkbox.checked : true;
+
+      if (!phoneOk || !checkOk) {
+        e.preventDefault();
+        return;
+      }
+
+      // Valid: prevent actual submit and add class to wrapper
+      e.preventDefault();
+      wrap.classList.add('intro__form--validated');
+      // stay on page; proceed with any custom logic here if needed
+    });
+  });
+});
