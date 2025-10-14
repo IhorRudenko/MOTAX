@@ -4,10 +4,15 @@
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100%;
-  min-height: 1012px;
-  max-height: 100dvh;
+  height: 100dvh;
+  min-height: 845px;
   padding-top: 78px;
+}
+
+.intro__container--full {
+  height: calc(100dvh - 78px);
+  min-height: 767px;
+
 }
 
 .intro__inner {
@@ -15,6 +20,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   height: 100%;
+  min-height: 100%;
+}
+
+.intro__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
 }
 
 .intro__title {
@@ -25,6 +38,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  margin-bottom: auto;
 
   @include adaptiveValue("font-size", 72, 30, 0, 1920, 479.98);
 
@@ -60,7 +74,7 @@
 .intro__descr {
   display: flex;
   align-items: center;
-  margin: 80px 0 30px;
+  margin: 50px 0 30px;
 }
 
 .intro__descr-img-wrap {
@@ -356,15 +370,15 @@
 
   .checkbox__text:before,
   .checkbox__text:after {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 20px;
-  }
-
-  .checkbox__input:checked + .checkbox__text:after {
     width: 16px;
     height: 16px;
     flex: 0 0 16px;
+  }
+
+  .checkbox__input:checked + .checkbox__text:after {
+    width: 12px;
+    height: 12px;
+    flex: 0 0 12px;
     top: 2px;
     left: 2px;
     background-image: url(../../../assets/img/icons/check.svg);
@@ -430,7 +444,13 @@
 }
 // ---------------------------------------------------------
 .intro__bottom {
-  background-color: #f2f2f2; 
+  // background-color: #f2f2f2; 
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 100%;
+}
+
+.intro__bottom-item--1 {
+  height: 100%;
 }
 
 .intro-bottom__container {
@@ -464,6 +484,8 @@
 
   img {
     max-width: 100%;
+    height: 100%;
+    max-height: 103px;
   }
 }
 
