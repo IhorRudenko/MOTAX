@@ -70,7 +70,20 @@
 		<div class="intro__bottom">
 			<div class="intro__container intro-bottom__container">
 				<div class="intro__bottom-item intro__bottom-item--1">
-					<img class="intro__bottom-item--poster" src="@img/intro/intro-bottom.png" alt="Image">
+					<picture class="intro__bottom-item--bg">
+						<source media="(min-width: 1200px)" srcset="@img/intro/intro-bottom-bg.png">
+						<source media="(min-width: 375px)" srcset="@img/intro/intro-bottom-bg--mobile.png">
+						<img  src="@img/intro/intro-bottom-bg.png">
+					</picture>
+
+					<div class="intro__bottom-item-img">
+					<img class="intro__bottom-item--poster" src="@img/intro/intro-bottom-img.png" alt="Image">
+					</div>
+
+					<div class="intro__bottom-item-text">
+					<span class="intro__bottom-span intro__bottom-span--1">Черная</span>
+					<span class="intro__bottom-span intro__bottom-span--2">Пятница</span>
+					</div>
 				</div>
 
 				<div class="intro__bottom-item intro__bottom-item--2">
