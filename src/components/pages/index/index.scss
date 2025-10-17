@@ -1,3 +1,4 @@
+// -- intro ---------------------------------------------------------------------------------
 .intro {
   background-image: url(../../../assets/img/intro/intro-bg.jpg);
   background-repeat: no-repeat;
@@ -20,7 +21,7 @@
   }
 
   @media (max-width:toEm($mobileSmall)){
-    max-height: 767px;
+    // max-height: 767px;
   }
 }
 
@@ -56,7 +57,7 @@
 }
 
 .intro__title {
-  font-family: "arubricacnbolditalic";
+  font-family: "a_RubricaXtCn";
   color: #fff;
   line-height: 1.1;
   margin-bottom: 20px;
@@ -65,7 +66,7 @@
   margin-left: 10px;
   margin-bottom: auto;
 
-  @include adaptiveValue("font-size", 72, 30, 0, 1440, 479.98);
+  @include adaptiveValue("font-size", 103, 43, 0, 1440, 479.98);
 
   @media (max-width:toEm($tablet)){
     order: 1;
@@ -174,20 +175,20 @@
   padding: 10px 25px 10px 40px;
   transform: skew(-8deg, 0deg);
   margin-left:  -25px;
-  font-family: "arubricacnbolditalic";
-  font-size: 20px;
+  font-family: "a_RubricaXtCn";
+  font-size: 22px;
   text-transform: uppercase;
   line-height: 1.2;
 
   @media (max-width:toEm($mobile)){
     padding: 6px 15px 6px 35px;
     margin-left:  -30px;
-    font-size: 16px;
+  }
+  
+  @media (max-width:toEm($mobileSmall)){
+    font-size: 21px;
   }
 
-  @media (max-width:toEm($mobileSmall)){
-    font-size: 14px; 
-  }
 }
 
 .ba-slider  {
@@ -540,7 +541,7 @@
 
 .intro__form-info {
   transition: all 1s ease-in-out;
-  font-family: "arubricacnbolditalic";
+  font-family: "a_RubricaXtCn";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -553,12 +554,13 @@
   left: 0;
   top: -100%;
   padding: 15px 20px;
+  text-align: center;
+  font-size: 45px;
 
   @media (max-width: 1199.98px){
     padding: 15px;
   }
 
-  @include adaptiveValue("font-size", 40, 20, 0, 1920, 479.98);
 }
 
 .intro__form.intro__form--validated .intro__form-info {
@@ -602,7 +604,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  font-family: "arubricacnbolditalic";
+  font-family: "a_RubricaXtCn";
   font-size: 30px;
   color: #000;
   height: 58px;
@@ -711,7 +713,7 @@
     font-weight: 700;
     font-style: italic;
     text-transform: uppercase;
-    // font-family: "arubricacnbolditalic";
+    // font-family: "a_RubricaXtCn";
 
     @include adaptiveValue("font-size", 45, 30, 0, 1199.98, 479.98);
   }
@@ -806,7 +808,7 @@
   strong {
     white-space: nowrap;
     font-weight: 700;
-    font-family: "arubricacnbolditalic";
+    font-family: "a_RubricaXtCn";
 
     @include adaptiveValue("font-size", 50, 24, 0, 1199.98, 767.98);
   }
@@ -827,7 +829,7 @@
 
   strong {
     white-space: nowrap;
-    font-family: "arubricacnbolditalic";
+    font-family: "a_RubricaXtCn";
      text-decoration: line-through;
     text-decoration-thickness: 1.5px;
 
@@ -905,7 +907,7 @@
 }
 
 .item-descr__credit-top {
-  font-family: "arubricacnbolditalic", serif;
+  font-family: "a_RubricaXtCn", serif;
   font-size: 16px;
   font-weight: 700;
 
@@ -958,6 +960,65 @@
     font-size: 10px; 
   }
 }
+// -- /intro --------------------------------------------------------------------------------
 
 
 
+// -- category__block ------------------------------------------------------------------------
+
+.category__block {
+  padding: 35px 0;
+}
+
+.category__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.category__item {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  align-items: center;
+  width: 100%;
+  max-width: 385px;
+  height: 70px;
+  border-radius: 6px;
+  background-image: url(../../../assets/img/category/btn-not-active-bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.category__item-picture {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.category__item-img {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.category__item-text {
+  color: #fff;
+  font-family: "a_RubricaXtCn";
+  font-size: 19px;
+  padding: 5px;
+}
+
+.category__item-title {
+
+}
+
+.category__item-descr {
+}
+
+// -- /category__block ------------------------------------------------------------------------

@@ -82,9 +82,9 @@
 
 		strong {
 			font-weight: 700;
-			font-family: "arubricacnbolditalic";
+			font-family: "a_RubricaXtCn";
 
-			@include adaptiveValue("font-size", 24, 18, 0, 1199.98, 767.98);
+			@include adaptiveValue("font-size", 30, 24, 0, 1199.98, 767.98);
 		}
 
 		span {
@@ -93,9 +93,9 @@
 			font-size: 18px;
 
 			@media (max-width: 767.89px){
-				font-size: 12px;
+				font-size: 16px;
 				font-weight: 700;
-				font-family: "arubricacnbolditalic";
+				font-family: "a_RubricaXtCn";
 			}
 		}
 	}
@@ -103,6 +103,7 @@
 	.header__tel-text {
 		font-weight: 500;
 		font-size: 14px;
+		text-align: center;
 
 		@media (max-width: 991.89px){
 			font-size: 14px;
@@ -123,6 +124,16 @@
 
 		@media (max-width: 575.89px){
 			font-size: 8px;
+		}
+	}
+
+	.header__tel-number {
+		display: flex;
+		gap: 8px;
+		align-items: flex-end;
+		
+		@media (max-width:toEm($mobile)){
+			align-items: center;
 		}
 	}
 	
@@ -186,7 +197,7 @@
 	}
 	
 	.header__btn {
-		font-family: "arubricacnbolditalic";
+		font-family: "a_RubricaXtCn";
 		font-weight: 500;
 		background-color: #e11b22;
 		color: #fff;
@@ -198,7 +209,7 @@
 		width: 270px;
 		transition: background-color 0.2s ease-in-out;
 
-		@include adaptiveValue("font-size", 20, 16, 0, 1199.98, 767.98);
+		@include adaptiveValue("font-size", 24, 20, 0, 1199.98, 767.98);
 
 		@media (max-width: 1199.98px) {
 			width: 100%;
