@@ -8,7 +8,7 @@
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Thumbs, Grid, Scrollbar } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -101,6 +101,86 @@ function initSliders() {
 			on: {
 
 			}
+		});
+	}
+
+
+	if (document.querySelector('.thumbs-swiper')) { // <- Вказуємо склас потрібного слайдера
+		new Swiper('.thumbs-swiper', { // <- Вказуємо склас потрібного слайдера
+			modules: [ Thumbs],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 20,
+			speed: 800,
+
+			freeMode: true,
+			watchSlidesProgress: true,
+
+			
+			// Брейкпоінти
+			breakpoints: {
+				640: {
+					spaceBetween: 20,
+				},
+				768: {
+					spaceBetween: 20,
+				},
+				992: {
+					spaceBetween: 30,
+				},
+				1200: {
+					spaceBetween: 30,
+				},
+				1366: {
+					spaceBetween: 30,
+				},
+			},
+			
+		});
+	}
+	
+	if (document.querySelector('.main-swiper')) { // <- Вказуємо склас потрібного слайдера
+		new Swiper('.main-swiper', { // <- Вказуємо склас потрібного слайдера
+			modules: [Navigation, Thumbs],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			speed: 800,
+			loop: true,
+
+			thumbs: {
+				swiper: ".thumbs-swiper",
+			},
+
+			navigation: {
+				prevEl: '.thumbs-swiper__prev',
+				nextEl: '.thumbs-swiper__next',
+			},
+
+			/*
+			// Брейкпоінти
+			breakpoints: {
+				640: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1268: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				},
+			},
+			*/
 		});
 	}
 }
