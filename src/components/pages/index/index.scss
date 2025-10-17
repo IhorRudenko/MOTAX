@@ -713,7 +713,6 @@
     font-weight: 700;
     font-style: italic;
     text-transform: uppercase;
-    // font-family: "a_RubricaXtCn";
 
     @include adaptiveValue("font-size", 45, 30, 0, 1199.98, 479.98);
   }
@@ -810,13 +809,13 @@
     font-weight: 700;
     font-family: "a_RubricaXtCn";
 
-    @include adaptiveValue("font-size", 50, 24, 0, 1199.98, 767.98);
+    @include adaptiveValue("font-size", 55, 40, 0, 1199.98, 575.98);
   }
 
   span {
     margin-left: 8px;
 
-    @include adaptiveValue("font-size", 30, 16, 0, 1199.98, 767.98);
+    @include adaptiveValue("font-size", 30, 16, 0, 1199.98, 575.98);
   }
 
 }
@@ -833,7 +832,7 @@
      text-decoration: line-through;
     text-decoration-thickness: 1.5px;
 
-    @include adaptiveValue("font-size", 20, 12, 0, 1199.98, 575.98);
+    @include adaptiveValue("font-size", 27, 14, 0, 1199.98, 575.98);
   }
 
   span {
@@ -907,12 +906,12 @@
 }
 
 .item-descr__credit-top {
-  font-family: "a_RubricaXtCn", serif;
-  font-size: 16px;
+  font-family: "a_RubricaXtCn";
+  font-size: 22px;
   font-weight: 700;
 
     @media (max-width: 575.98px){
-      font-size: 14px;
+      font-size: 20px;
     }
   
   span {
