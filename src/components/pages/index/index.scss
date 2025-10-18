@@ -540,7 +540,6 @@
 }
 
 .intro__form-info {
-  transition: all 1s ease-in-out;
   font-family: "a_RubricaXtCn";
   display: flex;
   align-items: center;
@@ -1485,6 +1484,7 @@
   margin-bottom: 0;
   background-color: #F2F2F2;
   width: 100%;
+  transition: all .3s linear;
 }
 
 .product__block-wapper {
@@ -1512,7 +1512,6 @@
   transform: translateX(120%);
   opacity: 0;
   visibility: hidden;
-  transition: all .3s linear;
   width: 100%;
   height: 100%;
   
@@ -1536,7 +1535,6 @@
   transform: translateY(-120%);
   opacity: 0;
   visibility: hidden;
-  transition: all .3s linear;
 
   @media (min-width: 1200px){
     padding: 20px 0;
@@ -1583,6 +1581,8 @@
 
 .product__bottom-item--2 {
   padding: 10px 0;
+  transition: all .3s linear;
+
   @media (max-width: 575.98px){
     padding: 0;
   }
@@ -1592,6 +1592,7 @@
 .product__block.product__block--fixed .product__block-form {
   opacity: 0;
   visibility: hidden;
+  transition: all .3s linear;
   display: none;
 }
 
