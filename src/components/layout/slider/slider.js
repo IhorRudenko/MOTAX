@@ -8,7 +8,8 @@ function initSliders() {
     const classes = Array.from(root.classList);
     const isMain = classes.some((c) => /^main-swiper(\-\d+)?$/.test(c));
     const isThumbs = classes.some((c) => /^thumbs-swiper(\-\d+)?$/.test(c));
-    if (isMain || isThumbs) return; 
+    const isFeedback = classes.includes('feedback__slider');
+    if (isMain || isThumbs || isFeedback) return; 
 
     const prev = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-prev') || root.querySelector('.swiper-button-prev');
     const next = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-next') || root.querySelector('.swiper-button-next');
@@ -70,6 +71,35 @@ function initSliders() {
       navigation: {
         prevEl: prevEl || undefined,
         nextEl: nextEl || undefined,
+      },
+    });
+  });
+
+  // Feedback sliders (independent, optional arrows inside .feedback__content)
+  document.querySelectorAll('.feedback__slider').forEach((sliderEl) => {
+    const scope = sliderEl.closest('.feedback__content') || sliderEl.parentElement || document;
+    const prevEl =
+      scope.querySelector('.feedback__prev') ||
+      scope.querySelector('.thumbs-swiper__prev') ||
+      scope.querySelector('.swiper-button-prev');
+    const nextEl =
+      scope.querySelector('.feedback__next') ||
+      scope.querySelector('.thumbs-swiper__next') ||
+      scope.querySelector('.swiper-button-next');
+
+    new Swiper(sliderEl, {
+      modules: [Navigation],
+      observer: true,
+      observeParents: true,
+      slidesPerView: 1,
+      spaceBetween: 50,
+      speed: 800,
+      loop: true,
+      navigation: (prevEl || nextEl) ? { prevEl: prevEl || undefined, nextEl: nextEl || undefined } : undefined,
+      breakpoints: {
+        576: { slidesPerView: 1, spaceBetween: 50 },
+        768: { slidesPerView: 2, spaceBetween: 50 },
+        1200: { slidesPerView: 3, spaceBetween: 50 },
       },
     });
   });
