@@ -4,12 +4,11 @@ import { Navigation, Thumbs, Grid, Scrollbar } from 'swiper/modules';
 import "./slider.scss";
 
 function initSliders() {
-  // 1) Ініціалізувати всі БАЗОВІ .swiper, крім спеціальних пар main/thumbs
   document.querySelectorAll('.swiper').forEach((root) => {
     const classes = Array.from(root.classList);
     const isMain = classes.some((c) => /^main-swiper(\-\d+)?$/.test(c));
     const isThumbs = classes.some((c) => /^thumbs-swiper(\-\d+)?$/.test(c));
-    if (isMain || isThumbs) return; // ці ініціалізуються нижче у парі
+    if (isMain || isThumbs) return; 
 
     const prev = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-prev') || root.querySelector('.swiper-button-prev');
     const next = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-next') || root.querySelector('.swiper-button-next');
@@ -28,16 +27,13 @@ function initSliders() {
     });
   });
 
-  // 2) ГОЛОВНІ + ПРЕВʼЮ ПАРИ, ідентифікація за локальним контейнером
   const allMain = Array.from(document.querySelectorAll('.swiper'))
     .filter((el) => Array.from(el.classList).some((c) => /^main-swiper(\-\d+)?$/.test(c)));
 
   allMain.forEach((mainEl) => {
     const scope = mainEl.closest('.main__content') || mainEl.parentElement || document;
 
-    // знайти thumbs всередині того ж контейнера
     const thumbsEl = scope.querySelector('.swiper.thumbs-swiper, .swiper[class*="thumbs-swiper-"]');
-    // знайти стрілки у межах контейнера (будь-який суфікс)
     const prevEl = scope.querySelector('[class^="thumbs-swiper__prev"]');
     const nextEl = scope.querySelector('[class^="thumbs-swiper__next"]');
 
