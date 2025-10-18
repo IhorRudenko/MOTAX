@@ -1492,20 +1492,57 @@
 }
 
 .product__block-form--info {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 277px;
+  width: 100%;
   align-items: center;
   gap: 15px;
-  width: 100%;
   position: absolute;
-  opacity: 0;
-}
 
-.product__block-form--text {
-
+  @media (max-width:toEm($mobile)){
+    display: flex; 
+    text-align: center;
+  }
 }
 
 .product__block-form--picture {
+  width: 277px;
+  flex: 0 0 277px;
+  position: relative;
+  transform: translateX(120%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s linear;
+  width: 100%;
+  height: 100%;
+  
+  @media (max-width:toEm($mobile)){
+    display: none; 
+  }
 
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;   
+    
+    @media (max-width: 1199.98px){
+      bottom: -25px;
+    }
+  }
+}
+
+.product__block-form--text {
+  font-family: "a_RubricaXtCn";
+  transform: translateY(-120%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s linear;
+
+  @media (min-width: 1200px){
+    padding: 20px 0;
+  }
+
+  @include adaptiveValue("font-size", 62, 43, 0, 1440, 479.98);
 }
 
 .product__bottom-row {
@@ -1515,6 +1552,7 @@
   align-items: center;
   padding: 0;
   gap: 20px;
+  position: relative;
 
   @media (max-width: 1199.98px){
     grid-template-columns: 1fr 40%;
@@ -1548,4 +1586,34 @@
   @media (max-width: 575.98px){
     padding: 0;
   }
+}
+
+.product__block.product__block--fixed .product__bottom-item--2,
+.product__block.product__block--fixed .product__block-form {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.product__block.product__block--fixed .product__bottom-row {
+ gap: 0;
+ display: flex;
+}
+
+.product__block.product__block--fixed .product__block-form--info {
+  position: static;
+}
+
+.product__block.product__block--fixed .product__block-form--text {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: all .3s linear;
+}
+
+.product__block.product__block--fixed .product__block-form--picture {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transition: all .3s linear;
 }

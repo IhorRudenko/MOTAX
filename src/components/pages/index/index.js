@@ -112,3 +112,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Mark product block as fixed on CTA click
+document.addEventListener('DOMContentLoaded', () => {
+  // Handle click on the specific button
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.product__form-btn');
+    if (!btn) return;
+    e.preventDefault();
+    const block = btn.closest('.product__block');
+    if (block) block.classList.add('product__block--fixed');
+  });
+
+  // Also handle form submit inside product block (keyboard, etc.)
+  document.querySelectorAll('.product__block form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const block = form.closest('.product__block');
+      if (block) block.classList.add('product__block--fixed');
+    });
+  });
+});
