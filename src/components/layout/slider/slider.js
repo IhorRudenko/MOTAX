@@ -1,188 +1,82 @@
-/*
-Документація по роботі у шаблоні: 
-Документація слайдера: https://swiperjs.com/
-Сніппет(HTML): swiper
-*/
-
-// Підключаємо слайдер Swiper з node_modules
-// При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
-// Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
 import { Navigation, Thumbs, Grid, Scrollbar } from 'swiper/modules';
-/*
-Основні модулі слайдера:
-Navigation, Pagination, Autoplay, 
-EffectFade, Lazy, Manipulation
-Детальніше дивись https://swiperjs.com/
-*/
 
-// Стилі Swiper
-// Підключення базових стилів
 import "./slider.scss";
-// Повний набір стилів з node_modules
-// import 'swiper/css/bundle';
 
-// Ініціалізація слайдерів
 function initSliders() {
-	// Список слайдерів
-	// Перевіряємо, чи є слайдер на сторінці
-	if (document.querySelector('.swiper')) { // <- Вказуємо склас потрібного слайдера
-		// Створюємо слайдер
-		new Swiper('.swiper', { // <- Вказуємо склас потрібного слайдера
-			// Підключаємо модулі слайдера
-			// для конкретного випадку
-			modules: [Navigation],
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			//autoHeight: true,
-			speed: 800,
+  // 1) Ініціалізувати всі БАЗОВІ .swiper, крім спеціальних пар main/thumbs
+  document.querySelectorAll('.swiper').forEach((root) => {
+    const classes = Array.from(root.classList);
+    const isMain = classes.some((c) => /^main-swiper(\-\d+)?$/.test(c));
+    const isThumbs = classes.some((c) => /^thumbs-swiper(\-\d+)?$/.test(c));
+    if (isMain || isThumbs) return; // ці ініціалізуються нижче у парі
 
-			//touchRatio: 0,
-			//simulateTouch: false,
-			//loop: true,
-			//preloadImages: false,
-			//lazy: true,
+    const prev = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-prev') || root.querySelector('.swiper-button-prev');
+    const next = root.closest('[data-swiper-root]')?.querySelector('.swiper-button-next') || root.querySelector('.swiper-button-next');
 
-			/*
-			// Ефекти
-			effect: 'fade',
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			*/
+    new Swiper(root, {
+      modules: [Navigation],
+      observer: true,
+      observeParents: true,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      speed: 800,
+      navigation: {
+        prevEl: prev || undefined,
+        nextEl: next || undefined,
+      },
+    });
+  });
 
-			// Пагінація
-			/*
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-			},
-			*/
+  // 2) ГОЛОВНІ + ПРЕВʼЮ ПАРИ, ідентифікація за локальним контейнером
+  const allMain = Array.from(document.querySelectorAll('.swiper'))
+    .filter((el) => Array.from(el.classList).some((c) => /^main-swiper(\-\d+)?$/.test(c)));
 
-			// Скроллбар
-			/*
-			scrollbar: {
-				el: '.swiper-scrollbar',
-				draggable: true,
-			},
-			*/
+  allMain.forEach((mainEl) => {
+    const scope = mainEl.closest('.main__content') || mainEl.parentElement || document;
 
-			// Кнопки "вліво/вправо"
-			navigation: {
-				prevEl: '.swiper-button-prev',
-				nextEl: '.swiper-button-next',
-			},
-			/*
-			// Брейкпоінти
-			breakpoints: {
-				640: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
-					spaceBetween: 30,
-				},
-			},
-			*/
-			// Події
-			on: {
+    // знайти thumbs всередині того ж контейнера
+    const thumbsEl = scope.querySelector('.swiper.thumbs-swiper, .swiper[class*="thumbs-swiper-"]');
+    // знайти стрілки у межах контейнера (будь-який суфікс)
+    const prevEl = scope.querySelector('[class^="thumbs-swiper__prev"]');
+    const nextEl = scope.querySelector('[class^="thumbs-swiper__next"]');
 
-			}
-		});
-	}
+    let thumbsInstance = null;
+    if (thumbsEl) {
+      thumbsInstance = new Swiper(thumbsEl, {
+        modules: [Thumbs],
+        observer: true,
+        observeParents: true,
+        slidesPerView: 4,
+        spaceBetween: 20,
+        speed: 800,
+        freeMode: true,
+        watchSlidesProgress: true,
+        breakpoints: {
+          640: { spaceBetween: 20 },
+          768: { spaceBetween: 20 },
+          992: { spaceBetween: 30 },
+          1200: { spaceBetween: 30 },
+          1366: { spaceBetween: 30 },
+        },
+      });
+    }
 
-
-	if (document.querySelector('.thumbs-swiper')) { // <- Вказуємо склас потрібного слайдера
-		new Swiper('.thumbs-swiper', { // <- Вказуємо склас потрібного слайдера
-			modules: [ Thumbs],
-			observer: true,
-			observeParents: true,
-			slidesPerView: 4,
-			spaceBetween: 20,
-			speed: 800,
-
-			freeMode: true,
-			watchSlidesProgress: true,
-
-			
-			// Брейкпоінти
-			breakpoints: {
-				640: {
-					spaceBetween: 20,
-				},
-				768: {
-					spaceBetween: 20,
-				},
-				992: {
-					spaceBetween: 30,
-				},
-				1200: {
-					spaceBetween: 30,
-				},
-				1366: {
-					spaceBetween: 30,
-				},
-			},
-			
-		});
-	}
-	
-	if (document.querySelector('.main-swiper')) { // <- Вказуємо склас потрібного слайдера
-		new Swiper('.main-swiper', { // <- Вказуємо склас потрібного слайдера
-			modules: [Navigation, Thumbs],
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 10,
-			speed: 800,
-			loop: true,
-
-			thumbs: {
-				swiper: ".thumbs-swiper",
-			},
-
-			navigation: {
-				prevEl: '.thumbs-swiper__prev',
-				nextEl: '.thumbs-swiper__next',
-			},
-
-			/*
-			// Брейкпоінти
-			breakpoints: {
-				640: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
-					spaceBetween: 30,
-				},
-			},
-			*/
-		});
-	}
+    new Swiper(mainEl, {
+      modules: [Navigation, Thumbs],
+      observer: true,
+      observeParents: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      speed: 800,
+      loop: true,
+      thumbs: thumbsInstance ? { swiper: thumbsInstance } : undefined,
+      navigation: {
+        prevEl: prevEl || undefined,
+        nextEl: nextEl || undefined,
+      },
+    });
+  });
 }
 document.querySelector('[data-fls-slider]') ?
 	window.addEventListener("load", initSliders) : null
