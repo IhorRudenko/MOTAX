@@ -582,6 +582,16 @@
   height: 100%;
 }
 
+.intro-bottom__container {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 1199.98px){
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
 .intro-call {
   display: none;
 
@@ -619,12 +629,13 @@
   }
 }
 
-.intro-bottom__container {
+.intro-bottom__row {
   min-height: 103px;  
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 0;
+  gap: 10px;
 
    @media (max-width: 1199.98px){
     display: flex; 
@@ -638,9 +649,11 @@
   grid-template-columns: 1fr 1fr;
   position: relative;
   min-height: 105px;
+  margin-left: -10px;
 
   @media (max-width: 1199.98px){
     width: 100%;
+    margin-right: -10px;
   } 
 
   @media (max-width: 575.98px){
@@ -760,6 +773,7 @@
   
   @media (max-width:toEm($tablet)){
     width: 100%;
+    padding: 25px 10px 10px;
   }
 }
 
@@ -770,7 +784,7 @@
 .item-descr {
  display: grid;
  grid-template-columns: 1fr 30px 1fr;
- gap: 10px; 
+//  gap: 10px; 
  align-items: center;
  justify-items: center;
  width: 100%;
@@ -778,7 +792,7 @@
 
  @media (max-width:toEm($mobile)){
     grid-template-columns: 1fr 15px 1fr;
-    gap: 6px;
+    // gap: 6px;
   }
 }
 
@@ -798,7 +812,7 @@
 .item-descr__price {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .item-descr__price--new {
@@ -838,7 +852,7 @@
   span {
     margin-left: 8px;
 
-    @include adaptiveValue("font-size", 20, 16, 0, 1199.98, 767.98);
+    @include adaptiveValue("font-size", 20, 14, 0, 1199.98, 767.98);
   }
 }
 
@@ -849,6 +863,10 @@
 
   @media (max-width:toEm($mobile)){
     font-size: 10px; 
+  }
+
+  @media (max-width:toEm($mobileSmall)){
+    font-size: 7px; 
   }
 }
 
@@ -874,11 +892,15 @@
   height: 100%;
 
   @media (max-width:toEm($mobile)){
+   grid-template-columns: 35px 1fr 45px;  
+  }
+
+  @media (max-width: 575.98px){
    grid-template-columns: 20px 1fr 45px;  
   }
 
   @media (max-width:toEm($mobileSmall)){
-   grid-template-columns: 20px 1fr; 
+   grid-template-columns: 20px 1fr 35px; 
    gap: 5px; 
   }
 }
@@ -889,7 +911,7 @@
   height: 35px;
   flex: 0 0 35px;
 
-  @media (max-width:toEm($mobile)){
+  @media (max-width: 575.98px){
     width: 20px;
     height: 20px;
     flex: 0 0 20px;
@@ -914,6 +936,10 @@
     @media (max-width: 575.98px){
       font-size: 20px;
     }
+
+    @media (max-width:toEm($mobileSmall)){
+      font-size: 16px; 
+    }
   
   span {
     font-family: "Montserrat", serif;
@@ -936,7 +962,7 @@
   }
 
   @media (max-width:toEm($mobileSmall)){
-    display: none; 
+    font-size: 8px;
   }
 }
 
@@ -948,6 +974,10 @@
   @media (max-width:toEm($mobile)){
     font-size: 10px; 
   }
+
+  @media (max-width:toEm($mobileSmall)){
+    font-size: 7px; 
+  }
 }
 
 .item-descr__credit-link {
@@ -958,6 +988,10 @@
 
   @media (max-width:toEm($mobile)){
     font-size: 10px; 
+  }
+
+  @media (max-width:toEm($mobileSmall)){
+    font-size: 7px; 
   }
 }
 // -- /intro --------------------------------------------------------------------------------
@@ -1070,6 +1104,8 @@
   @media (max-width:toEm($mobile)){
     display: flex;
     flex-direction: column; 
+    padding: 15px 0 0;
+    gap: 30px;
   }
 }
 
@@ -1088,6 +1124,13 @@
   flex: 0 0 155px;
   height: 87px;
   position: relative;
+  transition: transform .2s ease-in-out;
+  overflow: hidden;
+  
+  &:hover img {
+    transform: scale(1.1);
+    transition: transform .2s ease-in-out;
+  }
 
   @media (max-width: 1199.98px){
     width: 105px;
@@ -1110,6 +1153,8 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    transition: transform .2s ease-in-out;
+    transform: scale(1);
   }
 }
 
@@ -1358,12 +1403,28 @@
   width: 100%;
   background-color: #E0E0E0;
   margin-bottom: 25px;
+
+  @media (max-width:toEm($tablet)) {
+    margin-bottom: 15px; 
+  }
 }
 
 .product__details-bottom {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  padding-top: 25px;
+  border-top: 2px solid #E0E0E0;
+
+  @media (max-width:toEm($tablet)){
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 575.98px){
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 .product__details-bottom-item {
@@ -1371,6 +1432,18 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
+  @media (max-width:toEm($tablet)){
+    margin: 0 auto;
+  }
+
+  @media (max-width: 575.98px){
+    max-width: 100%;
+  }
+
+  @media (max-width:toEm($mobileSmall)){
+     flex-direction: column; 
+  }
 
   img {
     width: 45px;
@@ -1383,14 +1456,96 @@
   font-weight: 600;
   font-size: 13px;
   line-height: 120%;
+
+  @media (max-width: 575.98px){
+    font-size: 16px;
+  }
 }
 // -------------------------------------------------------------
 
 .product__block {
   border-radius: 10px;
+  padding: 0 20px;
+
+  @media (max-width: 1199.98px){
+    padding: 25px 10px;  
+  }
+
+  @media (max-width:toEm($mobile)){
+    padding: 15px 10px 40px;   
+  }
+
+  @media (max-width: 575.98px){
+    border-radius: 0;
+    margin: 0 -10px;
+  }
 }
 
 .product__block-form {
   margin-bottom: 0;
   background-color: #F2F2F2;
+  width: 100%;
+}
+
+.product__block-wapper {
+  display: none;
+}
+
+.product__block-form--info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+.product__block-form--text {
+
+}
+
+.product__block-form--picture {
+
+}
+
+.product__bottom-row {
+  min-height: 103px;  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0;
+  gap: 20px;
+
+  @media (max-width: 1199.98px){
+    grid-template-columns: 1fr 40%;
+  }
+
+  @media (max-width:toEm($tablet)){
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width:toEm($mobile)){
+    gap: 25px; 
+  }
+}
+
+.product__form-row {
+  @media (max-width:toEm($tablet)){
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width:toEm($mobile)){
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+  }
+}
+
+.product__bottom-item--2 {
+  padding: 10px 0;
+  @media (max-width: 575.98px){
+    padding: 0;
+  }
 }
